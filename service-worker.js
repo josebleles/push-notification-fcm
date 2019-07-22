@@ -21,6 +21,7 @@
 
 "use strict";
 
+// DATA EXAMPLE: {"url":"192.168.64.91:9101", "titulo": "TESTIII", "mensagem":"KKKKKKKKKKKKK DAROA"}
 self.addEventListener("push", function(event) {
   console.log("[Service Worker] Push Received.");
   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);

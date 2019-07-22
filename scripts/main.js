@@ -42,13 +42,12 @@ function urlB64ToUint8Array(base64String) {
 }
 
 $(document).ready(() => {
-  $("#botao-enviar").click(self => {
+  $("#botao-inscrever-ouvinte").click(self => {
     $(self).prop("disabled", true);
     if (estaInscrito) {
       desinscreverOUsuario();
-      console.log("to inscrito");
     } else {
-      subscrevaOUsuario();
+      inscreverOUsuario();
     }
   });
 
@@ -76,8 +75,8 @@ $(document).ready(() => {
       });
   } else {
     console.warn("Push messaging não é suportado");
-    $("#botao-enviar").text("Push não habilitado pelo navegador");
-    $("#botao-enviar").prop("disabled", true);
+    $("#botao-inscrever-ouvinte").text("Push não habilitado pelo navegador");
+    $("#botao-inscrever-ouvinte").prop("disabled", true);
   }
 });
 
@@ -101,24 +100,24 @@ function iniciarInterfaceDoUsuario() {
 
 function atualizarBotao() {
   if (Notification.permission === "denied") {
-    $("#botao-enviar").text(
+    $("#botao-inscrever-ouvinte").text(
       "Ce BLOQUEOU A PERMISAO DE NOTIFICAO, QUER CLICAR AQUI P QUE?! INFERNO."
     );
-    $("#botao-enviar").prop("disabled", true);
+    $("#botao-inscrever-ouvinte").prop("disabled", true);
     enviarSerialDeInscricaoParaGestaoDeFerias(null);
     return;
   }
 
   if (estaInscrito) {
-    $("#botao-enviar").text("Desabilitar recebimento de Push");
+    $("#botao-inscrever-ouvinte").text("Desabilitar recebimento de Push");
   } else {
-    $("#botao-enviar").text("Habilitar recebimento de Push");
+    $("#botao-inscrever-ouvinte").text("Habilitar recebimento de Push");
   }
 
-  $("#botao-enviar").prop("disabled", false);
+  $("#botao-inscrever-ouvinte").prop("disabled", false);
 }
 
-function subscrevaOUsuario() {
+function inscreverOUsuario() {
   console.log("subscreva");
   const chavePrivada = urlB64ToUint8Array(chavePublica);
   registroDoServiceWorker.pushManager
@@ -127,10 +126,7 @@ function subscrevaOUsuario() {
       applicationServerKey: chavePrivada
     })
     .then(retornoInscrito => {
-      console.log(
-        "Usuario esta inscrito!!! POOORAAA!!!!!!!!!!",
-        retornoInscrito
-      );
+      console.log("Usuario esta inscrito!!!", retornoInscrito);
 
       enviarSerialDeInscricaoParaGestaoDeFerias(retornoInscrito);
 
@@ -148,10 +144,7 @@ function desinscreverOUsuario() {
     .getSubscription()
     .then(retornoInscricao => {
       if (retornoInscricao) {
-        console.log(
-          "Usuario esta desinscrito!!! POOORAAA!!!!!!!!!!",
-          retornoInscrito
-        );
+        console.log("Usuario esta desinscrito!!!", retornoInscrito);
         return retornoInscricao.unsubscribe();
       }
     })
@@ -170,8 +163,8 @@ function enviarSerialDeInscricaoParaGestaoDeFerias(inscricao) {
 
   if (inscricao) {
     $("#serial-inscricao-json").text(JSON.stringify(inscricao));
-    $(".detalhes-incricao-json").removeClass("is-invisible");
+    $(".detalhes-incricao-json").removeClass("esta-invisivel");
   } else {
-    $(".detalhes-incricao-json").addClass("is-invisible");
+    $(".detalhes-incricao-json").addClass("esta-invisivel");
   }
 }

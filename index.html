@@ -4,66 +4,44 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Push Codelab</title>
-
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <link
-      rel="stylesheet"
-      href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css"
-    />
+    <title>push codelab da google fcm</title>
     <link rel="stylesheet" href="styles/index.css" />
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="scripts/main.js"></script>
   </head>
 
   <body>
     <header>
-      <h1>Push Codelab</h1>
+      <h1>push codelab da google fcm</h1>
     </header>
 
     <main>
       <p>
-        Welcome to the push messaging codelab. The button below needs to be
-        fixed to support subscribing to push.
-      </p>
-      <p>
-        <button
-          id="botao-enviar"
-          disabled
-          class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-        >
-          Enable Push Messaging
+        <button id="botao-inscrever-ouvinte" disabled>
+          Habilitar o recebimento de push
         </button>
       </p>
-      <section class="subscription-details detalhes-incricao-json is-invisible">
+      <section class="detalhes-incricao-json is-invisible">
         <p>
-          Once you've subscribed your user, you'd send their subscription to
-          your server to store in a database so that when you want to send a
-          message you can lookup the subscription and send a message to it.
+          Esse é o json contendo as chaves publica e privada, esse conteudo pode
+          ser enviado para o back-end de alguma aplicacao, podendo assim ser
+          usado para o envio de mensagens, uma vez que nosso client esta
+          escutando estas mensagens.
         </p>
         <p>
-          To simplify things for this code lab copy the following details into
-          the
+          Para simplificar as coisas é usado um site que simula envio de
+          mensagem
           <a href="https://web-push-codelab.glitch.me//">Push Companion Site</a>
-          and it'll send a push message for you, using the application server
-          keys on the site - so make sure they match.
+          este site está disponivel por conta da
+          <a
+            href="https://developers.google.com/web/fundamentals/codelabs/push-notifications/"
+            >codelab</a
+          >
+          de push notification. este site ira usar as chaves que ele gerou para
+          o envio. preste atenção nisto.
         </p>
         <pre><code id="serial-inscricao-json"></code></pre>
       </section>
     </main>
-
-    <script src="scripts/main.js"></script>
-
-    <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
   </body>
 </html>
